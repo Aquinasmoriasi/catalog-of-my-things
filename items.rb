@@ -13,9 +13,11 @@ class Item
         @genre = genre
     end
     def move_to_archive
+        @archieved = can_be_archieved?
     end
 
     private
     def can_be_archived?
+        Date.today.year - Date.parse(@publish_date).year > 10
     end
 end
