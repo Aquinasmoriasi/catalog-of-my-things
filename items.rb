@@ -1,0 +1,21 @@
+class Item
+    attr_reader :source, :author, :label, :publish_date, :genre
+    def initialize(author, source, label, publish_date)
+        @author = author
+        @source = source
+        @label = label
+        @publish_date = publish_date
+        @id = Random.rand(1..100_000)
+        @genre = genre
+        @archived = false
+    end
+    def genre=(genre)
+        @genre = genre
+    end
+    def move_to_archive
+    end
+
+    private
+    def can_be_archived?
+    end
+end
