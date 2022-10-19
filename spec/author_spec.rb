@@ -1,5 +1,4 @@
 require_relative 'spec_helper'
-require 'pry'
 
 describe Author do
   context '#initialize' do
