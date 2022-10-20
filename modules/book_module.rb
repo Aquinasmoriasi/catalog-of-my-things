@@ -1,6 +1,6 @@
 module BookModule
+  # rubocop:disable Metrics/MethodLength
   def create_book
-      # rubocop:disable Metrics/MethodLength
     puts 'Creating a book... \n'
     puts "Enter the book's name"
     title = gets.chomp
@@ -30,8 +30,8 @@ module BookModule
     @books << json
     File.write('books.json', @books)
     puts 'Book created successfully :)'
-      # rubocop:enable Metrics/MethodLength
   end
+  # rubocop:enable Metrics/MethodLength
 
   def list_all_books
     @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
