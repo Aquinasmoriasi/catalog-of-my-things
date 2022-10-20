@@ -2,7 +2,7 @@ require_relative 'items'
 
 class Book < Item
   attr_reader :publisher, :cover_state
- 
+
   def initialize(publisher, cover_state)
     super
     @publisher = publisher

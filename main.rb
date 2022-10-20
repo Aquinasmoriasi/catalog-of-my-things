@@ -26,8 +26,8 @@ class Main
     puts '5)  List all labels'
     puts '6)  List all authors'
     puts '7)  Add a book'
-    puts '8) Add a music album'
-    puts '9) Add a game'
+    puts '8)  Add a music album'
+    puts '9)  Add a game'
     puts "10) Exit app\n"
     puts "------------\n"
   end
