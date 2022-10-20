@@ -17,13 +17,13 @@ class App
 
   def options(option)
     case option
-    when 5
+    when 4
       list_all_genres
-    when 9
+    when 7
       create_book
-    when 10
+    when 8
       add_album
-    when 12
+    when 9
       create_game
     else
       puts 'Please enter a valid option'

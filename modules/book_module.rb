@@ -20,7 +20,7 @@ module BookModule
 
     author = Author.new(first_name, last_name)
     book = Book.new(publisher, cover_state)
-    label = Label.new(title, color)
+    label = Label.new(label_title, color)
     item = Item.new(publish_date)
     book_struct = ItemStruct.new({author: "#{author.first_name} #{author.last_name}", publisher: book.publisher,
                                  cover_state: book.cover_state, title: title, color: label.color,
