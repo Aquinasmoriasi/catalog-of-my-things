@@ -4,7 +4,9 @@ class Item
   attr_reader :publish_date
   attr_accessor :author, :label, :genre, :archived
 
-  def initialize(publish_date)
+  # rubocop:disable Style/OptionalBooleanParameter
+
+  def initialize(publish_date, archived = false)
     @author = author
     @label = label
     @publish_date = publish_date
