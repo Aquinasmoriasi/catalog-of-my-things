@@ -33,12 +33,12 @@ module GameModule
   end
 
   def list_all_games
-     @games = JSON.parse(File.read('games.json'))  if File.exist?('games.json') && File.read('games.json') != ''
+    @games = JSON.parse(File.read('games.json')) if File.exist?('games.json') && File.read('games.json') != ''
     p @games
   end
 
   def list_all_game_labels
-     @games = JSON.parse(File.read('games.json'))  if File.exist?('games.json') && File.read('games.json') != ''
+    @games = JSON.parse(File.read('games.json')) if File.exist?('games.json') && File.read('games.json') != ''
     p @games
   end
 end

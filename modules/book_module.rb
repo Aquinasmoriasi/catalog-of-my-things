@@ -24,7 +24,7 @@ module BookModule
     item = Item.new(publish_date)
     book_struct = ItemStruct.new({ author: "#{author.first_name} #{author.last_name}", publisher: book.publisher,
                                    cover_state: book.cover_state, title: title, color: label.color,
-                                   publish_date: publish_date, label: label.title })
+                                   publish_date: item.publish_date, label: label.title })
     json = JSON.generate(book_struct)
     @books << json
     File.write('books.json', @books)
@@ -32,7 +32,7 @@ module BookModule
   end
 
   def list_all_books
-     @books = JSON.parse(File.read('books.json'))  if File.exist?('books.json') && File.read('books.json') != ''
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
     p @books
   end
 
