@@ -14,6 +14,7 @@ class Item
     @genre = genre
     @archived = archived
   end
+  # rubocop:enable Style/OptionalBooleanParameter
 
   def move_to_archive
     @archived = can_be_archived?
