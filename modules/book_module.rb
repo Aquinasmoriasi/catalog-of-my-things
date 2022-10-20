@@ -3,10 +3,8 @@ module BookModule
     puts 'Creating a book... \n'
     puts "Enter the book's name"
     title = gets.chomp
-    puts "Enter the book's label(eg 'Gift'): "
+    puts "Enter the book's label(e.g. 'Gift'): "
     label_title = gets.chomp
-    puts "Enter book's color"
-    color = gets.chomp
     puts "Enter the author's first name: "
     first_name = gets.chomp
     puts "Enter the author's last name: "
@@ -17,8 +15,10 @@ module BookModule
     publish_date = gets.chomp
     puts "What's the book's cover state?: "
     cover_state = gets.chomp
+    puts "Enter book's color"
+    color = gets.chomp
 
-    author = Author.new(first_name, last)
+    author = Author.new(first_name, last_name)
     book = Book.new(publisher, cover_state)
     label = Label.new(title: title, color: color)
     item = Item.new(publish_date)
