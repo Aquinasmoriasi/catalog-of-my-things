@@ -1,10 +1,9 @@
 require_relative 'spec_helper'
-require 'pry'
 
 describe MusicAlbum do
   context '#initialize' do
     it 'creates a new instance of the MusicAlbum class' do
-      music = MusicAlbum.new('Uncle Tom\'s Cabin', 'black')
+      music = MusicAlbum.new('Wakawaka', '22/12/2009', true)
       expect(music).to be_an_instance_of MusicAlbum
     end
   end
