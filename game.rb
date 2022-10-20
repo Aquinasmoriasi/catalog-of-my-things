@@ -1,6 +1,7 @@
 require_relative 'items'
 
 class Game < Item
+  attr_reader :multiplayer, :last_played_at
   def initialize(multiplayer, last_played_at)
     super
     @multiplayer = multiplayer

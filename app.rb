@@ -3,6 +3,7 @@ require_relative './modules/game_module'
 require_relative './modules/music_module'
 require 'json/add/struct'
 require './file_helper.rb'
+require 'json'
 
 ItemStruct = Struct.new(:item)
 class App
