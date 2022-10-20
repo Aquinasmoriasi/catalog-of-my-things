@@ -1,5 +1,6 @@
 module GameModule
   def create_game
+    # rubocop:disable Metrics/MethodLength
     puts 'Creating a game... \n'
     puts "Enter the game's name"
     title = gets.chomp
@@ -30,6 +31,7 @@ module GameModule
     @games << json
     File.write('games.json', @games)
     puts 'Game created successfully'
+    # rubocop:enable Metrics/MethodLength
   end
 
   def list_all_games

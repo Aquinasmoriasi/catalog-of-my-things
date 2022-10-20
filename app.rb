@@ -17,6 +17,7 @@ class App
   include GameModule
 
   def options(option)
+    # rubocop:disable Metrics/CyclomaticComplexity
     case option
     when 1
       list_all_books
@@ -37,5 +38,6 @@ class App
     else
       puts 'Please enter a valid option'
     end
+    # rubocop:enable Metrics/CyclomaticComplexity
   end
 end
