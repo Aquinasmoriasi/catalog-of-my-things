@@ -1,27 +1,74 @@
 module BookModule
+  # rubocop:disable Metrics/MethodLength
   def create_book
-    puts 'Creating a book...'
+    puts 'Creating a book... \n'
+    puts "Enter the book's name"
+    title = gets.chomp.capitalize
+    puts "Enter the book's label(e.g. 'Gift'): "
+    label_title = gets.chomp.capitalize
     puts "Enter the author's first name: "
-    first_name = gets.chomp
+    first_name = gets.chomp.capitalize
     puts "Enter the author's last name: "
-    last_name = gets.chomp
+    last_name = gets.chomp.capitalize
     puts 'Enter publisher: '
-    publisher = gets.chomp
+    publisher = gets.chomp.capitalize
     puts 'Enter publish date: '
     publish_date = gets.chomp
     puts "What's the book's cover state?: "
     cover_state = gets.chomp
+    puts "Enter book's color"
+    color = gets.chomp
 
-    full_name = "#{first_name} #{last_name}"
+    author = Author.new(first_name, last_name)
     book = Book.new(publisher, cover_state)
-    book_struct = BookStruct.new(full_name: full_name, publisher: book.publisher, publish_date: publish_date,
-                                 cover_state: book.cover_state)
-    json = json.generate(book_struct)
+    label = Label.new(label_title, color)
+    item = Item.new(publish_date)
+    book_struct = ItemStruct.new({ author: "#{author.first_name} #{author.last_name}", publisher: book.publisher,
+                                   cover_state: book.cover_state, title: title, color: label.color,
+                                   publish_date: item.publish_date, label: label.title })
+    json = JSON.generate(book_struct)
     @books << json
     File.write('books.json', @books)
+    puts 'Book created successfully :)'
   end
+  # rubocop:enable Metrics/MethodLength
 
   def list_all_books
-    p @books
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
+    if @books.empty?
+      puts 'No books currently saved'
+    else
+      puts 'All saved books'
+      puts "---------------\n"
+      @books.each_with_index do |book, index|
+        book = JSON.parse(book, create_additions: true)
+        puts "#{index + 1}) \"#{book.item['title']}\" by #{book.item['author']},
+         published by #{book.item['publisher']} on #{book.item['publish_date']}."
+      end
+    end
+  end
+
+  def list_all_book_labels
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
+    if @books.empty?
+      puts ''
+    else
+      @books.each_with_index do |book, _index|
+        book = JSON.parse(book, create_additions: true)
+        puts "The book, \"#{book.item['title']}\" by #{book.item['author']} is labeled as: \"#{book.item['label']}\"."
+      end
+    end
+  end
+
+  def list_all_book_authors
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
+    if @books.empty?
+      puts ''
+    else
+      @books.each_with_index do |book, _index|
+        book = JSON.parse(book, create_additions: true)
+        puts "#{book.item['author']} authored \"#{book.item['title']}\"."
+      end
+    end
   end
 end
