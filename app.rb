@@ -11,12 +11,10 @@ class App
     @books = []
     @genres = []
     @games = []
-    @musics = []
   end
 
   include BookModule
   include GameModule
-  include MusicModule
 
   # rubocop:disable all
   def options(option)
@@ -30,9 +28,15 @@ class App
     when 4
       list_all_genres
     when 5
-      list_all_labels
+      puts ' All labels'
+      puts "------------\n"
+      list_all_book_labels
+      list_all_game_labels
     when 6
-      list_all_authors
+      puts ' All authors'
+      puts "-------------\n"
+      list_all_book_authors
+      list_all_game_authors
     when 7
       create_book
     when 8

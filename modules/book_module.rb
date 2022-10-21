@@ -3,15 +3,15 @@ module BookModule
   def create_book
     puts 'Creating a book... \n'
     puts "Enter the book's name"
-    title = gets.chomp
+    title = gets.chomp.capitalize
     puts "Enter the book's label(e.g. 'Gift'): "
-    label_title = gets.chomp
+    label_title = gets.chomp.capitalize
     puts "Enter the author's first name: "
-    first_name = gets.chomp
+    first_name = gets.chomp.capitalize
     puts "Enter the author's last name: "
-    last_name = gets.chomp
+    last_name = gets.chomp.capitalize
     puts 'Enter publisher: '
-    publisher = gets.chomp
+    publisher = gets.chomp.capitalize
     puts 'Enter publish date: '
     publish_date = gets.chomp
     puts "What's the book's cover state?: "
@@ -35,11 +35,40 @@ module BookModule
 
   def list_all_books
     @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
-    p @books
+    if @books.empty?
+      puts 'No books currently saved'
+    else
+      puts 'All saved books'
+      puts "---------------\n"
+      @books.each_with_index do |book, index|
+        book = JSON.parse(book, create_additions: true)
+        puts "#{index + 1}) \"#{book.item['title']}\" by #{book.item['author']},
+         published by #{book.item['publisher']} on #{book.item['publish_date']}."
+      end
+    end
   end
 
-  def list_all_labels
+  def list_all_book_labels
     @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
-    p @books
+    if @books.empty?
+      puts ''
+    else
+      @books.each_with_index do |book, _index|
+        book = JSON.parse(book, create_additions: true)
+        puts "The book, \"#{book.item['title']}\" by #{book.item['author']} is labeled as: \"#{book.item['label']}\"."
+      end
+    end
+  end
+
+  def list_all_book_authors
+    @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
+    if @books.empty?
+      puts ''
+    else
+      @books.each_with_index do |book, _index|
+        book = JSON.parse(book, create_additions: true)
+        puts "#{book.item['author']} authored \"#{book.item['title']}\"."
+      end
+    end
   end
 end
