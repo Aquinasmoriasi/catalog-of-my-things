@@ -21,6 +21,8 @@ class App
     case option
     when 1
       list_all_books
+    when 2
+      list_all_music_albums
     when 3
       list_all_games
     when 4
