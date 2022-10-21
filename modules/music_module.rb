@@ -48,7 +48,8 @@ module MusicModule
       puts "---------------\n"
       @musics.each_with_index do |music, index|
         music = JSON.parse(music, create_additions: true)
-        puts "#{index + 1}) \"#{music.item['name']}\", genre: #{music.item['genre']}, publish_date: #{music.item['publish_date']}, on_spotify: #{music.item['on_spotify']}."
+        puts "#{index + 1}) \"#{music.item['name']}\", genre: #{music.item['genre']},
+        publish_date: #{music.item['publish_date']},on_spotify: #{music.item['on_spotify']}."
       end
     end
   end
