@@ -11,10 +11,12 @@ class App
     @books = []
     @genres = []
     @games = []
+    @musics = []
   end
 
   include BookModule
   include GameModule
+  include MusicModule
 
   # rubocop:disable all
   def options(option)
