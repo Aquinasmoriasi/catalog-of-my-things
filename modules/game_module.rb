@@ -1,38 +1,26 @@
 module GameModule
-  # rubocop:disable Metrics/MethodLength
   def create_game
-    puts 'Creating a game... \n'
     puts "Enter the game's name"
     title = gets.chomp.capitalize
-    puts "Enter the game's author first name"
-    first_name = gets.chomp.capitalize
-    puts "Enter the game's author last name"
-    last_name = gets.chomp.capitalize
+    puts "Enter the game's author name"
+    author_name = gets.chomp.capitalize
     puts "Enter the game's genre"
     genre = gets.chomp.capitalize
     puts 'Is the game a multiplayer game? [Yes/No]: '
     multiplayer = gets.chomp.capitalize
     puts 'When was the game published: '
     publish_date = gets.chomp
-    puts 'When was the game played last: '
-    last_played_at = gets.chomp
     puts "Enter the game's label(e.g. 'Gift'): "
     label_title = gets.chomp.capitalize
-
-    author = Author.new(first_name, last_name)
+    author = Author.new(author_name, nil)
     genre = Genre.new(genre)
-    game = Game.new(multiplayer, last_played_at)
+    game = Game.new(multiplayer, nil)
     label = Label.new(label_title, 'unknown')
     item = Item.new(publish_date)
-    @games << JSON.generate(ItemStruct.new({ author: "#{author.first_name} #{author.last_name}",
-                                             multiplayer: game.multiplayer, last_played_at: game.last_played_at,
-                                             publish_date: item.publish_date, label: label.title, genre: genre.name,
-                                             title: title }))
-
+    @games << JSON.generate(ItemStruct.new({ author: author.first_name, title: title, multiplayer: game.multiplayer,
+                                             publish_date: item.publish_date, label: label.title, genre: genre.name }))
     File.write('games.json', @games)
-    puts 'Game created successfully'
   end
-  # rubocop:enable Metrics/MethodLength
 
   def list_all_games
     @games = JSON.parse(File.read('games.json')) if File.exist?('games.json') && File.read('games.json') != ''

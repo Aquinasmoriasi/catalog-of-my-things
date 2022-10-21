@@ -12,7 +12,7 @@ class Main
       main_menu
       input = gets.chomp.to_i
       exit_app unless input != 10
-      @app.options(input)
+      @app.listing_options(input)
     end
   end
 

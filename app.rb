@@ -18,8 +18,7 @@ class App
   include GameModule
   include MusicModule
 
-  # rubocop:disable all
-  def options(option)
+  def listing_options(option)
     case option
     when 1
       list_all_books
@@ -31,14 +30,19 @@ class App
       list_all_genres
     when 5
       puts ' All labels'
-      puts "------------\n"
       list_all_book_labels
       list_all_game_labels
     when 6
       puts ' All authors'
-      puts "-------------\n"
       list_all_book_authors
       list_all_game_authors
+    else
+      creation_options(option)
+    end
+  end
+
+  def creation_options(option)
+    case option
     when 7
       create_book
     when 8
@@ -49,5 +53,4 @@ class App
       puts 'Please enter a valid option'
     end
   end
-  # rubocop:enable all
 end
