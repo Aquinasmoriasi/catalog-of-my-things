@@ -16,7 +16,7 @@ def add_album
 
   music_struct = MusicStruct.new(name: name, genre: genre, publish_date: publish_date,
                                  on_spotify: on_spotify)
-  json = json.generate(music_struct)
+  json = JSON.generate(music_struct)
   @musics << json
   File.write('musics.json', @musics)
 
