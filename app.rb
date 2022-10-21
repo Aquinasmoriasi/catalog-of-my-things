@@ -26,7 +26,9 @@ class App
     when 4
       list_all_genres
     when 5
-      list_all_labels
+      puts "All labels"
+      list_all_book_labels
+      list_all_game_labels
     when 6
       list_all_authors
     when 7

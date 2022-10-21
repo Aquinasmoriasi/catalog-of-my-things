@@ -36,11 +36,27 @@ module GameModule
 
   def list_all_games
     @games = JSON.parse(File.read('games.json')) if File.exist?('games.json') && File.read('games.json') != ''
-    p @games
+    if @games.empty?
+      puts "No games currently saved"
+    else
+      puts "All saved games"
+      puts "---------------\n"
+      @games.each_with_index do |game, index|
+        game = JSON.parse(game, create_additions: true)
+        puts "#{index+1}) \"#{game.item['title']}\" by #{game.item['author']}, supports multiplayer: #{game.item['multiplayer']}, genre: #{game.item['genre']}."
+      end
+    end
   end
 
   def list_all_game_labels
     @games = JSON.parse(File.read('games.json')) if File.exist?('games.json') && File.read('games.json') != ''
-    p @games
+    if @games.empty?
+      puts ""
+    else
+      @games.each_with_index do |game, index|
+        game = JSON.parse(game, create_additions: true)
+        puts "The game, \"#{game.item['title']}\" by #{game.item['author']} is labeled as: \"#{game.item['label']}\"."
+      end
+    end
   end
 end

@@ -35,11 +35,27 @@ module BookModule
 
   def list_all_books
     @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
-    p @books
+    if @books.empty?
+      puts "No books currently saved"
+    else
+      puts "All saved books"
+      puts "---------------\n"
+      @books.each_with_index do |book, index|
+        book = JSON.parse(book, create_additions: true)
+        puts "#{index+1}) \"#{book.item['title']}\" by #{book.item['author']}, published by #{book.item['publisher']} on #{book.item['publish_date']}."
+      end
+    end
   end
 
-  def list_all_labels
+  def list_all_book_labels
     @books = JSON.parse(File.read('books.json')) if File.exist?('books.json') && File.read('books.json') != ''
-    p @books
+    if @books.empty?
+      puts ''
+      else
+      @books.each_with_index do |book, index|
+        book = JSON.parse(book, create_additions: true)
+        puts "The book, \"#{book.item['title']}\" by #{book.item['author']} is labeled as: \"#{book.item['label']}\"."
+      end
+    end
   end
 end
