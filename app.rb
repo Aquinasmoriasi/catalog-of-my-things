@@ -16,7 +16,7 @@ class App
   include BookModule
   include GameModule
 
-  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable all
   def options(option)
     case option
     when 1
@@ -26,11 +26,15 @@ class App
     when 4
       list_all_genres
     when 5
-      puts "All labels"
+      puts ' All labels'
+      puts "------------\n"
       list_all_book_labels
       list_all_game_labels
     when 6
-      list_all_authors
+      puts ' All authors'
+      puts "-------------\n"
+      list_all_book_authors
+      list_all_game_authors
     when 7
       create_book
     when 8
@@ -41,5 +45,5 @@ class App
       puts 'Please enter a valid option'
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable all
 end
