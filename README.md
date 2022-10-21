@@ -13,6 +13,8 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 - A code editor (preferably Visual Studio Code)
+### Video description
+[Video Description](https://drive.google.com/file/d/1VJ1Ur7d4Gt6Qa0UjPEHkAzGEaBMYM_V3/view?usp=sharing)
 
 ### Install
 
