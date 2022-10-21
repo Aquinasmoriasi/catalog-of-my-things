@@ -11,16 +11,20 @@ class App
     @books = []
     @genres = []
     @games = []
+    @musics = []
   end
 
   include BookModule
   include GameModule
+  include MusicModule
 
-  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable all
   def options(option)
     case option
     when 1
       list_all_books
+    when 2
+      list_all_music_albums
     when 3
       list_all_games
     when 4
@@ -39,5 +43,5 @@ class App
       puts 'Please enter a valid option'
     end
   end
-  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable all
 end
