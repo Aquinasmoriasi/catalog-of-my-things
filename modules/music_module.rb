@@ -12,7 +12,7 @@ module MusicModule
     print 'is it on Spotify? [Y/N]: '
     on_spotify = gets.chomp.downcase
     on_spotify = on_spotify == 'y'
-    MusicAlbum.new(name, publish_date, on_spotify)
+    MusicAlbum.new(on_spotify)
     new_genre = Genre.new(genre)
 
     music_struct = ItemStruct.new(name: name, genre: genre, publish_date: publish_date,
@@ -26,11 +26,30 @@ module MusicModule
   end
 
   def list_all_genres
-    p @gernes
+    @musics = JSON.parse(File.read('musics.json')) if File.exist?('musics.json') && File.read('musics.json') != ''
+    if @musics.empty?
+      puts ''
+    else
+      puts 'All saved music'
+      puts "---------------\n"
+      @musics.each_with_index do |music, index|
+        music = JSON.parse(music, create_additions: true)
+        puts "#{index + 1})  the genre of \"#{music.item['name']}\" is: #{music.item['genre']}."
+      end
+    end
   end
 
   def list_all_music_albums
     @musics = JSON.parse(File.read('musics.json')) if File.exist?('musics.json') && File.read('musics.json') != ''
-    p @musics
+    if @musics.empty?
+      puts 'No music currently saved'
+    else
+      puts 'All saved music'
+      puts "---------------\n"
+      @musics.each_with_index do |music, index|
+        music = JSON.parse(music, create_additions: true)
+        puts "#{index + 1}) \"#{music.item['name']}\", genre: #{music.item['genre']}, publish_date: #{music.item['publish_date']}, on_spotify: #{music.item['on_spotify']}."
+      end
+    end
   end
 end
